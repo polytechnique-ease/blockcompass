@@ -233,7 +233,8 @@ chmod +x replicaset.sh
   
 
 <br> *You can cite the following papers for this project:*
-<br>Rasolroveicy, M., & Fokaefs, M. (2020, November). Dynamic reconfiguration of consensus protocol for IoT data registry on blockchain. In Proceedings of the 30th Annual International Conference on Computer Science and Software Engineering (pp. 227-236).
+<br> 1- Rasolroveicy, M., & Fokaefs, M. (2020, November). Dynamic reconfiguration of consensus protocol for IoT data registry on blockchain. In Proceedings of the 30th Annual International Conference on Computer Science and Software Engineering (pp. 227-236). <br>
+<br> 2- Rasolroveicy, Mohammadreza, Wejdene Haouari, and Marios Fokaefs. "Public or private? a techno-economic analysis of blockchain." Proceedings of the 31st Annual International Conference on Computer Science and Software Engineering. 2021
 
 <br>*References:*
 <br>Ramprasad, B., Fokaefs, M., Mukherjee, J., & Litoiu, M. (2019, June). EMU-IoT-A Virtual Internet of Things Lab. In 2019 IEEE International Conference on Autonomic Computing (ICAC) (pp. 73-83). IEEE.
