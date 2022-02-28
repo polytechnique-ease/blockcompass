@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c55ccec5-aaed-43c4-bc9e-07ed30f5d480" name="Default Changelist" comment="add write to file">
-      <change beforePath="$PROJECT_DIR$/configuration/blockchain.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/blockchain.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monitor/logs/resource-monitor-error.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monitor/logs/resource-monitor-output.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monitor/readme.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monitor/requirements.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monitor/resource-metrics.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monitor/resource-monitor.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monitor/start.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/replicaset.sh" beforeDir="false" afterPath="$PROJECT_DIR$/replicaset.sh" afterDir="false" />
+    <list default="true" id="c55ccec5-aaed-43c4-bc9e-07ed30f5d480" name="Default Changelist" comment="refactoring monitoring">
+      <change afterPath="$PROJECT_DIR$/monitor/start.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/launcher.py" beforeDir="false" afterPath="$PROJECT_DIR$/launcher.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monitoring/.env" beforeDir="false" afterPath="$PROJECT_DIR$/monitor/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monitoring/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/monitor/database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monitoring/dockerMonitoring.py" beforeDir="false" afterPath="$PROJECT_DIR$/monitor/dockerMonitoring.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monitoring/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/monitor/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monitoring/mongoDB.py" beforeDir="false" afterPath="$PROJECT_DIR$/monitor/mongoDB.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monitoring/monitoring.py" beforeDir="false" afterPath="$PROJECT_DIR$/monitor/monitoring.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monitoring/resource-metrics.csv" beforeDir="false" afterPath="$PROJECT_DIR$/monitor/resource-metrics.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monitoring/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/monitor/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monitoring/untils.py" beforeDir="false" afterPath="$PROJECT_DIR$/monitor/untils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +62,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="javascript.nodejs.core.library.configured.version" value="10.24.1" />
     <property name="javascript.nodejs.core.library.typings.version" value="10.17.60" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/monitoring" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -69,11 +73,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/monitoring" />
       <recent name="$PROJECT_DIR$/backend" />
       <recent name="$PROJECT_DIR$/front" />
       <recent name="$PROJECT_DIR$/networks/ethereum-clique" />
       <recent name="$PROJECT_DIR$/test-replicat" />
-      <recent name="$PROJECT_DIR$/clients/sawtooth-client" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/adapter-client" />
@@ -300,7 +304,7 @@
       <workItem from="1637057393337" duration="1288000" />
       <workItem from="1637091091789" duration="1132000" />
       <workItem from="1637092235465" duration="301000" />
-      <workItem from="1646086889822" duration="441000" />
+      <workItem from="1646086889822" duration="1567000" />
     </task>
     <task id="LOCAL-00001" summary="add server that listen to change stream and emit the new data to the client">
       <created>1627598267312</created>
@@ -344,7 +348,14 @@
       <option name="project" value="LOCAL" />
       <updated>1637092340186</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="refactoring monitoring">
+      <created>1646087377179</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1646087377179</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -370,6 +381,7 @@
     <MESSAGE value="add dashboard with live stream chart" />
     <MESSAGE value="add build frontend in launcher" />
     <MESSAGE value="add write to file" />
-    <option name="LAST_COMMIT_MESSAGE" value="add write to file" />
+    <MESSAGE value="refactoring monitoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactoring monitoring" />
   </component>
 </project>

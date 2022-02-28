@@ -2,3 +2,4 @@ pyyaml
 pymongo
 pyaml-env
 pytz
+python-dotenv
