@@ -2,13 +2,13 @@ blockchain:
   type: sawtooth-poet
 ethereum:
   receivers:
-    - url:  'http://172.31.18.253:8545'
+    - url:  'http://132.207.227.22:8545'
       account: '0xa7efd857de41dc223cfc8cf6fe052348492864c4'
       name: "miner 1"
-    - url:  'http://172.31.18.253:8546'
+    - url:  'http://132.207.227.22:8546'
       account: '0x116C95B6f0599b80EdaEF96dB4A0a03890bAf812'
       name: "miner 2"
-    - url:   'http://172.31.18.253:8547'
+    - url:   'http://132.207.227.22:8547'
       account : '0xe062C6acEF6e44a009dfF67bCBdDf2C780DdbC91'
       name: "miner 3"
   contract:
@@ -36,9 +36,9 @@ sawtooth:
     - 'rest-api-2:8008'
     - 'rest-api-3:8008'
 replicaSet:
-  -  '172.31.18.253:27011'
-  -  '172.31.18.253:27012'
-  -  '172.31.18.253:27013'
+  -  '132.207.227.22:27011'
+  -  '132.207.227.22:27012'
+  -  '132.207.227.22:27013'
 nodeNumber:
   5
 dataSize:
