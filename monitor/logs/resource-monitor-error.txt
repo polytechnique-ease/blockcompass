@@ -1,0 +1,51 @@
+Traceback (most recent call last):
+  File "/home/wejdene/polytechnique/blockcompass/env/lib/python3.6/site-packages/pymongo/pool.py", line 1332, in connect
+    sock = _configured_socket(self.address, self.opts)
+  File "/home/wejdene/polytechnique/blockcompass/env/lib/python3.6/site-packages/pymongo/pool.py", line 1021, in _configured_socket
+    sock = _create_connection(address, options)
+  File "/home/wejdene/polytechnique/blockcompass/env/lib/python3.6/site-packages/pymongo/pool.py", line 1005, in _create_connection
+    raise err
+  File "/home/wejdene/polytechnique/blockcompass/env/lib/python3.6/site-packages/pymongo/pool.py", line 998, in _create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "main.py", line 26, in <module>
+    main()
+  File "main.py", line 16, in main
+    docker_monitor.get_measurements()
+  File "/home/wejdene/polytechnique/blockcompass/monitor/dockerMonitoring.py", line 98, in get_measurements
+    self.database_insertion(data)
+  File "/home/wejdene/polytechnique/blockcompass/monitor/monitoring.py", line 9, in database_insertion
+    self.database.inset_to_database(data)
+  File "/home/wejdene/polytechnique/blockcompass/monitor/mongoDB.py", line 20, in inset_to_database
+    self.collection.insert_one(item)
+  File "/home/wejdene/polytechnique/blockcompass/env/lib/python3.6/site-packages/pymongo/collection.py", line 613, in insert_one
+    comment=comment,
+  File "/home/wejdene/polytechnique/blockcompass/env/lib/python3.6/site-packages/pymongo/collection.py", line 547, in _insert_one
+    self.__database.client._retryable_write(acknowledged, _insert_command, session)
+  File "/home/wejdene/polytechnique/blockcompass/env/lib/python3.6/site-packages/pymongo/mongo_client.py", line 1399, in _retryable_write
+    return self._retry_with_session(retryable, func, s, None)
+  File "/home/wejdene/polytechnique/blockcompass/env/lib/python3.6/site-packages/pymongo/mongo_client.py", line 1286, in _retry_with_session
+    return self._retry_internal(retryable, func, session, bulk)
+  File "/home/wejdene/polytechnique/blockcompass/env/lib/python3.6/site-packages/pymongo/mongo_client.py", line 1327, in _retry_internal
+    raise last_error
+  File "/home/wejdene/polytechnique/blockcompass/env/lib/python3.6/site-packages/pymongo/mongo_client.py", line 1311, in _retry_internal
+    with self._get_socket(server, session) as sock_info:
+  File "/usr/lib/python3.6/contextlib.py", line 81, in __enter__
+    return next(self.gen)
+  File "/home/wejdene/polytechnique/blockcompass/env/lib/python3.6/site-packages/pymongo/mongo_client.py", line 1156, in _get_socket
+    with server.get_socket(handler=err_handler) as sock_info:
+  File "/usr/lib/python3.6/contextlib.py", line 81, in __enter__
+    return next(self.gen)
+  File "/home/wejdene/polytechnique/blockcompass/env/lib/python3.6/site-packages/pymongo/pool.py", line 1379, in get_socket
+    sock_info = self._get_socket()
+  File "/home/wejdene/polytechnique/blockcompass/env/lib/python3.6/site-packages/pymongo/pool.py", line 1489, in _get_socket
+    sock_info = self.connect()
+  File "/home/wejdene/polytechnique/blockcompass/env/lib/python3.6/site-packages/pymongo/pool.py", line 1340, in connect
+    _raise_connection_failure(self.address, error)
+  File "/home/wejdene/polytechnique/blockcompass/env/lib/python3.6/site-packages/pymongo/pool.py", line 273, in _raise_connection_failure
+    raise AutoReconnect(msg) from error
+pymongo.errors.AutoReconnect: 172.16.200.177:27011: [Errno 111] Connection refused
