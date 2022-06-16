@@ -1,0 +1,4 @@
+Time,Sensors,Requests,success,ErrorRate,AvgLatency
+22:19:04,4,61,61,0.00,31.36
+22:19:14,4,61,61,0.00,26.25
+22:19:24,0,61,61,0.00,22.48

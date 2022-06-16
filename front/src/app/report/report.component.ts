@@ -214,6 +214,8 @@ export class ReportComponent implements OnInit {
     }
   ];
 
+  config: AngularEditorConfig = { editable: true, spellcheck: true, height: '15rem', minHeight: '5rem', placeholder: 'Enter text here...', translate: 'no' }
+
   public receivers = ""
   public receiversTable = []
   public blockchain = ""

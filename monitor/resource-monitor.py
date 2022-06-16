@@ -131,9 +131,9 @@ def check_utilization(target, collection):
 
 def writeToFile(num, avg_cpu, avg_mem, avg_net_i, avg_net_o, cpus, mems, net_is, net_os):
     log_file = open(log_cpu_path, "a")
-    log_file.write("%s,%d,%.2f,%.2f,%d,%d,%s\n" % (datetime.now().strftime("%H:%M:%S"),
+    log_file.write((datetime.now().strftime("%H:%M:%S"),
                                                    num, avg_cpu, avg_mem, avg_net_i, avg_net_o,
-                                                   ",".join("%.2f,%.2f,%.3f,%.3f" % (
+                                                   ",".join( (
                                                        cpus[i], mems[i], net_is[i], net_os[i]) for i in
                                                             range(num))))
     log_file.close()
