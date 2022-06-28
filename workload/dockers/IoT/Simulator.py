@@ -5,6 +5,7 @@ import waves
 import asyncio
 import settings
 import statistics
+import fsensors.sensor
 
 logging.basicConfig(
     level=logging.INFO,
@@ -28,11 +29,11 @@ async def run_scheduler(simulator, schedules, sensors, collection):
     for sched in schedules:
         L.info("%d sensors in %d seconds" % sched)
         if sched[0] > simulator["cur_sensors"]:
-            sensors.sensor.start_sensors(simulator, sched[0], sensors)
+            fsensors.sensor.start_sensors(simulator, sched[0], sensors)
         else:
-            sensors.sensor.stop_sensors(simulator, sched[0])
+            fsensors.sensor.stop_sensors(simulator, sched[0])
         await asyncio.sleep(sched[1])
-    tasks = sensors.sensor.stop_sensors(simulator, 0)
+    tasks = fsensors.sensor.stop_sensors(simulator, 0)
     simulator["running"] = False
     await asyncio.sleep(12)
 
@@ -56,8 +57,7 @@ def main(argv):
         "metrics": metrics,
         "running": True
     }
-    loop.run_until_complete(run_scheduler(
-        simulator, schedules, sensors, collection))
+    loop.run_until_complete(run_scheduler(simulator, schedules, sensors, collection))
     loop.close()
 
 

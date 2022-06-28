@@ -1,6 +1,11 @@
 import asyncio
 import aiohttp
-import sensormsgs
+import fsensors.sensormsgs
+import fsensors.temperature
+import fsensors.gps
+import fsensors.device
+import fsensors.asd
+import fsensors.camera
 import random
 import time
 import __main__ as Simulator
@@ -17,27 +22,27 @@ def init_sensor(simulator, id, config):
     if config[0] == "device":
         t["mean"] = float(config[1])
         t["sigma"] = float(config[2])
-        t["func"] = sensormsgs.get_device_sensor_msg
+        t["func"] = fsensors.device.get_device_sensor_msg
     elif config[0] == "temp":
         t["interval"] = float(config[1])
         t["mean"] = random.uniform(-30, 50)
-        t["func"] = sensormsgs.get_temp_sensor_msg
+        t["func"] = fsensors.temperature.get_temp_sensor_msg
     elif config[0] == "gps":
         t["interval"] = float(config[1])
         t["dir"] = True
         t["spot"] = random.randrange(0, len(Simulator.gps_paths), 1)
-        t["func"] = sensormsgs.get_gps_sensor_msg
+        t["func"] = fsensors.gps.get_gps_sensor_msg
     elif config[0] == "camera":
         t["fps"] = int(config[1])
         t["bitrate"] = int(config[2])
         t["motion"] = (random.choice([0, 1]) == 1)
         t["motion_time"] = float(random.uniform(1, 10))
         t["cur_time"] = 0
-        t["func"] = sensormsgs.get_camera_sensor_msg
+        t["func"] = fsensors.camera.get_camera_sensor_msg
     elif config[0] == "asd":
         t["sps"] = int(config[1])
         t["spot"] = random.randrange(0, len(Simulator.wave_data), 1)
-        t["func"] = sensormsgs.get_asd_sensor_msg
+        t["func"] = fsensors.asd.get_asd_sensor_msg
     else:
         Simulator.L.error("Sensor %d: No such type" % id)
     return t
@@ -52,7 +57,7 @@ async def run_sensor(simulator, id, config):
         msg, st = sensor["func"](sensor)
         # L.info("Sensor %d: Send %d bytes, Sleep %.2f" % (id, len(msg), st))
         starttime = time.time()
-        success = await sensormsgs.send_sensor_msg(sensor["session"], sensor["url"], msg)
+        success = await fsensors.sensormsgs.send_sensor_msg(sensor["session"], sensor["url"], msg)
         endtime = time.time()
 
         if success:
