@@ -45,7 +45,7 @@ def main(argv):
     collection = settings.get_collection_and_configuration()
     gps.load_gps_paths()
     waves.load_wave()
-    sensors = settings.load_sensors_settings("run/sensors.list")
+    sensors = settings.load_sensors_settings("run/users.list")
     schedules = settings.load_schedule_settings("run/schedule.list")
     loop = asyncio.get_event_loop()
     metrics = [0, 0, 0.0]
