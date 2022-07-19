@@ -1,0 +1,32 @@
+Traceback (most recent call last):
+  File "main.py", line 26, in <module>
+    main()
+  File "main.py", line 16, in main
+    docker_monitor.get_measurements()
+  File "/home/wejdene/master/blockcompass/monitor/dockerMonitoring.py", line 98, in get_measurements
+    self.database_insertion(data)
+  File "/home/wejdene/master/blockcompass/monitor/monitoring.py", line 9, in database_insertion
+    self.database.inset_to_database(data)
+  File "/home/wejdene/master/blockcompass/monitor/mongoDB.py", line 20, in inset_to_database
+    self.collection.insert_one(item)
+  File "/home/wejdene/master/blockcompass/env/lib/python3.6/site-packages/pymongo/collection.py", line 613, in insert_one
+    comment=comment,
+  File "/home/wejdene/master/blockcompass/env/lib/python3.6/site-packages/pymongo/collection.py", line 547, in _insert_one
+    self.__database.client._retryable_write(acknowledged, _insert_command, session)
+  File "/home/wejdene/master/blockcompass/env/lib/python3.6/site-packages/pymongo/mongo_client.py", line 1398, in _retryable_write
+    with self._tmp_session(session) as s:
+  File "/usr/lib/python3.6/contextlib.py", line 81, in __enter__
+    return next(self.gen)
+  File "/home/wejdene/master/blockcompass/env/lib/python3.6/site-packages/pymongo/mongo_client.py", line 1676, in _tmp_session
+    s = self._ensure_session(session)
+  File "/home/wejdene/master/blockcompass/env/lib/python3.6/site-packages/pymongo/mongo_client.py", line 1663, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "/home/wejdene/master/blockcompass/env/lib/python3.6/site-packages/pymongo/mongo_client.py", line 1608, in __start_session
+    self._topology._check_implicit_session_support()
+  File "/home/wejdene/master/blockcompass/env/lib/python3.6/site-packages/pymongo/topology.py", line 519, in _check_implicit_session_support
+    self._check_session_support()
+  File "/home/wejdene/master/blockcompass/env/lib/python3.6/site-packages/pymongo/topology.py", line 536, in _check_session_support
+    readable_server_selector, self._settings.server_selection_timeout, None
+  File "/home/wejdene/master/blockcompass/env/lib/python3.6/site-packages/pymongo/topology.py", line 229, in _select_servers_loop
+    % (self._error_message(selector), timeout, self.description)
+pymongo.errors.ServerSelectionTimeoutError: 192.168.0.19:27012: [Errno 111] Connection refused,192.168.0.19:27011: [Errno 111] Connection refused,192.168.0.19:27013: [Errno 111] Connection refused, Timeout: 30s, Topology Description: <TopologyDescription id: 62d61322e62d86aa2d250535, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('192.168.0.19', 27011) server_type: Unknown, rtt: None, error=AutoReconnect('192.168.0.19:27011: [Errno 111] Connection refused',)>, <ServerDescription ('192.168.0.19', 27012) server_type: Unknown, rtt: None, error=AutoReconnect('192.168.0.19:27012: [Errno 111] Connection refused',)>, <ServerDescription ('192.168.0.19', 27013) server_type: Unknown, rtt: None, error=AutoReconnect('192.168.0.19:27013: [Errno 111] Connection refused',)>]>

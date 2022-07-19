@@ -9,20 +9,20 @@ with open("./configuration/blockchain.yaml", 'r') as stream:
         cmd = './replicaset.sh'
         subprocess.call(cmd ,shell=True)
 
-        # # 4. start backend client
-        # cmd = "docker-compose up -d"
-        # print("[x] start backend client")
-        # subprocess.call(cmd.split(), cwd="backend")
+        # 4. start backend client
+        cmd = "docker-compose up -d"
+        print("[x] start backend client")
+        subprocess.call(cmd.split(), cwd="backend")
 
-        # # 6. build frontend
-        # cmd = "docker-compose build --no-cache"
-        # print("[x] build frontend client")
-        # subprocess.call(cmd.split(), cwd="front")
-        #
-        # # 6. start frontend
-        # cmd = "docker-compose up -d"
-        # print("[x] start frontend client")
-        # subprocess.call(cmd.split(), cwd="front")
+        # 6. build frontend
+        cmd = "docker-compose build --no-cache"
+        print("[x] build frontend client")
+        subprocess.call(cmd.split(), cwd="front")
+
+        # 6. start frontend
+        cmd = "docker-compose up -d"
+        print("[x] start frontend client")
+        subprocess.call(cmd.split(), cwd="front")
 
         # 2. start network sample and adapter
         if loaded_config['blockchain']:
