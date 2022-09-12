@@ -10,7 +10,9 @@ BlockCompass is a benchmarking performance tool for blockchain platforms. Curren
 
 ## Tutorials
 Ethereum Clique: https://youtu.be/R91RybpXbVA
+
 Hyperledger Fabric: https://youtu.be/Jgzrq-yXcj4
+
 User manual: https://drive.google.com/file/d/1sVX8OzQ6ShL_ftaTozEth3tf3ZkX_oCs/view?usp=sharing
 
 ## Minimum Requirement
