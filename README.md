@@ -8,6 +8,10 @@
 
 BlockCompass is a benchmarking performance tool for blockchain platforms. Currently Hyperledger Fabric, Hyperledger Sawtooth and Ethereum are supported.  BlockCompass supports multiple performance indicators including resource consumption (CPU, Memory, Network Input and Network Output), latency, transmission rate, throughput and error rate. It also provides a real time chart and the possibility to export a detailed report. 
 
+## Tutorials
+Ethereum Clique: https://youtu.be/R91RybpXbVA
+Hyperledger Fabric: https://youtu.be/Jgzrq-yXcj4
+User manual: https://drive.google.com/file/d/1sVX8OzQ6ShL_ftaTozEth3tf3ZkX_oCs/view?usp=sharing
 
 ## Minimum Requirement
 
