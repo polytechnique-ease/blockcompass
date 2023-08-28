@@ -198,6 +198,74 @@ source ~/.profile
 ```
   
 </details>
+
+
+
+## Project Structure
+
+### Backend
+
+- **Backend**: Server implementation using Express.js in JavaScript.
+
+### Configuration
+
+- **/configuration**: Holds the main configuration file and the contractABI for Ethereum.
+
+### Ethereum Clients
+
+- **/eth-client-js**: Ethereum client adapter, an Express.js server implemented in JavaScript. Uses raw JSON RPC for Ethereum transactions. Requires unlocked accounts.
+- **/eth-web3-client**: Another Ethereum client adapter using Web3.js. This implementation is still under development but does not require an unlocked account.
+
+### Frontend
+
+- **/front**: Frontend client folder built with Angular 10.
+
+### Monitor
+
+- **/monitor**: Resource monitor that runs a Python script to call `docker stats` every 10 seconds.
+  - **/logs**: Contains output and error logs.
+
+### Networks and Contracts
+
+- **/networks**: Sample networks folder.
+- **/contracts**: Contract implementations for Ethereum and Hyperledger Fabric.
+  - **/ethereum-clique**: Sample for Ethereum Clique (PoA) network.
+    - **/bootnode**: Dockerfile for bootnode.
+    - **/miner**: Genesis and Dockerfile for miner.
+    - **/docker-compose.yml**: Docker-compose file for a 5-node Ethereum clique network.
+
+### Hyperledger Fabric
+
+- **/fabric-v2.2**: Hyperledger Fabric Network sample.
+  - **/docker**: Docker-compose files for each peer.
+- **/services**:
+  - **/enrollAdmin.js**: Script to enroll admin.
+  - **/block-server.js**: Script to register a user to org 1.
+  - **/txn-server.js**: Hyperledger Fabric client adapter, an ExpressJS server.
+
+### Hyperledger Sawtooth
+
+- **/sawtooth_v1_2**: Hyperledger Sawtooth Network sample.
+  - **/kvstoreprocess**: KVSTORE transaction family.
+  - **/rest_api**: Hyperledger Sawtooth Fabric adapter.
+  - **/docker-compose-pbft.yaml**: Docker-compose for 5-node network with PBFT consensus.
+  - **/docker-compose-poet.yaml**: Docker-compose for 5-node network with PEoT consensus.
+  - **/docker-compose-raft.yaml**: Docker-compose for 5-node network with Raft consensus.
+
+### Workload
+
+- **/workload**: Workload client implementation.
+  - **/dockers**: 
+    - **/IoT**: Contains workload logic and user management.
+    - **/web**: NGINX server for transactions.
+  - **/IoT**: Configuration for workload clients.
+
+### Miscellaneous
+
+- **Clean.sh**: Bash script to clean up containers and services.
+- **Docker-compose-mongo-replicaset.yml**: Docker-compose file for MongoDB replica set with three members.
+- **Launcher.py**: Python script to start the experiment.
+- **replicaset.sh**: Bash script to initialize the MongoDB replica set.
   
   
  ## Get Started
