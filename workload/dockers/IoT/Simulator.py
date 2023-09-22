@@ -23,19 +23,33 @@ size = 1
 global timezone
 timezone = "Africa/Tunis"
 
-# Run the scheduler
 async def run_scheduler(simulator, schedules, sensors, collection):
     simulator["loop"].create_task(statistics.do_statistics(simulator, 10, collection))
     for sched in schedules:
         L.info("%d sensors in %d seconds" % sched)
-        if sched[0] > simulator["cur_sensors"]:
-            fsensors.sensor.start_sensors(simulator, sched[0], sensors)
-        else:
-            fsensors.sensor.stop_sensors(simulator, sched[0])
-        await asyncio.sleep(sched[1])
+
+        if simulator["workload_type"] == "transactional":
+            if sched[0] > simulator["cur_sensors"]:
+                fsensors.sensor.start_sensors(simulator, sched[0], sensors)
+            else:
+                fsensors.sensor.stop_sensors(simulator, sched[0])
+            await asyncio.sleep(sched[1])
+
+        elif simulator["workload_type"] == "batch":
+            num_batches = sched[1]
+            for _ in range(num_batches):
+                # Send a batch of requests equal to sched[0] (number of sensors)
+                await send_batch_requests(simulator, sched[0], sensors)
+                await asyncio.sleep(1)  # Wait for 1 second before sending the next batch
+
     tasks = fsensors.sensor.stop_sensors(simulator, 0)
     simulator["running"] = False
     await asyncio.sleep(12)
+
+async def send_batch_requests(simulator, num_requests, sensors):
+    fsensors.sensor.start_sensors(simulator, num_requests, sensors)
+    await asyncio.sleep(0.1)  # Give a short time for the requests to be sent
+    fsensors.sensor.stop_sensors(simulator, num_request
 
 
 def main(argv):
