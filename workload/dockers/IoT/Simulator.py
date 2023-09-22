@@ -39,9 +39,16 @@ async def run_scheduler(simulator, schedules, sensors, collection):
 
 
 def main(argv):
-    if len(argv) != 2:
-        L.error("Usage: %s server_url" % argv[0])
+    if len(argv) != 3:
+        L.error("Usage: %s server_url workload_type" % argv[0])
         return
+    server_url = argv[1]
+    workload_type = argv[2]
+
+    if workload_type not in ['transactional', 'batch']:
+        L.error("Invalid workload type. Expected 'transactional' or 'batch'.")
+        return
+
     collection = settings.get_collection_and_configuration()
     gps.load_gps_paths()
     waves.load_wave()
@@ -50,16 +57,16 @@ def main(argv):
     loop = asyncio.get_event_loop()
     metrics = [0, 0, 0.0]
     simulator = {
-        "url": argv[1],
+        "url": server_url,
         "loop": loop,
         "cur_sensors": 0,
         "tasks": [],
         "metrics": metrics,
-        "running": True
+        "running": True,
+        "workload_type": workload_type  # add workload type to the simulator dictionary
     }
     loop.run_until_complete(run_scheduler(simulator, schedules, sensors, collection))
     loop.close()
-
 
 if __name__ == "__main__":
     main(sys.argv)
