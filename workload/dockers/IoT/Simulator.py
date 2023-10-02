@@ -13,18 +13,27 @@ logging.basicConfig(
 )
 
 # Init vars
-global L
 L = logging.getLogger()
-global gps_paths 
 gps_paths = []
 wave_data = []
-global size
 size = 1
-global timezone
 timezone = "Africa/Tunis"
+
+async def send_batch_requests(simulator, num_requests, sensors):
+    # Start the sensors to send the requests
+    fsensors.sensor.start_sensors(simulator, num_requests, sensors)
+
+    tasks = [sensor.task for sensor in sensors[:num_requests]]
+
+    # Wait for all users to complete their requests
+    await asyncio.gather(*tasks)
+
+    # Here we can stop the sensors 
+    fsensors.sensor.stop_sensors(simulator, num_requests)
 
 async def run_scheduler(simulator, schedules, sensors, collection):
     simulator["loop"].create_task(statistics.do_statistics(simulator, 10, collection))
+
     for sched in schedules:
         L.info("%d sensors in %d seconds" % sched)
 
@@ -36,26 +45,21 @@ async def run_scheduler(simulator, schedules, sensors, collection):
             await asyncio.sleep(sched[1])
 
         elif simulator["workload_type"] == "batch":
-            num_batches = sched[1]
+            num_batches = sched[1] // 60  # Assuming 60 seconds 
             for _ in range(num_batches):
-                # Send a batch of requests equal to sched[0] (number of sensors)
+                # Send a batch of requests
                 await send_batch_requests(simulator, sched[0], sensors)
-                await asyncio.sleep(1)  # Wait for 1 second before sending the next batch
+                await asyncio.sleep(1)  # Sleep for the remainder of the time before the next batch
 
     tasks = fsensors.sensor.stop_sensors(simulator, 0)
     simulator["running"] = False
     await asyncio.sleep(12)
 
-async def send_batch_requests(simulator, num_requests, sensors):
-    fsensors.sensor.start_sensors(simulator, num_requests, sensors)
-    await asyncio.sleep(0.1)  # Give a short time for the requests to be sent
-    fsensors.sensor.stop_sensors(simulator, num_request
-
-
 def main(argv):
     if len(argv) != 3:
         L.error("Usage: %s server_url workload_type" % argv[0])
         return
+
     server_url = argv[1]
     workload_type = argv[2]
 
@@ -77,8 +81,9 @@ def main(argv):
         "tasks": [],
         "metrics": metrics,
         "running": True,
-        "workload_type": workload_type  # add workload type to the simulator dictionary
+        "workload_type": workload_type
     }
+
     loop.run_until_complete(run_scheduler(simulator, schedules, sensors, collection))
     loop.close()
 
