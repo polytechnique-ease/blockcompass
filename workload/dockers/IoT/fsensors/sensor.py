@@ -10,6 +10,10 @@ import random
 import time
 import __main__ as Simulator
 
+global sensors_tasks
+sensors_tasks = []
+
+
 # Initialize the sensor
 def init_sensor(simulator, id, config):
     session = aiohttp.ClientSession()
@@ -53,20 +57,17 @@ async def run_sensor(simulator, id, config):
     sensor = init_sensor(simulator, id, config)
     metrics = simulator["metrics"]
 
+    # Use 'id < simulator["cur_sensors"]' to check if the sensor should continue emitting
     while (id < simulator["cur_sensors"]):
         msg, st = sensor["func"](sensor)
-        # L.info("Sensor %d: Send %d bytes, Sleep %.2f" % (id, len(msg), st))
         starttime = time.time()
         success = await fsensors.sensormsgs.send_sensor_msg(sensor["session"], sensor["url"], msg)
         endtime = time.time()
 
         if success:
-            # send request
             metrics[0] += 1
-            # latency
             metrics[2] += endtime - starttime
         else:
-            # error request
             metrics[1] += 1
 
         diff = st - (endtime - starttime)
@@ -76,8 +77,6 @@ async def run_sensor(simulator, id, config):
     await sensor["session"].close()
     Simulator.L.info("Sensor %d: Exit" % id)
 
-
-# Start new sensors
 def start_sensors(simulator, new_sensors, configs):
     num_configs = len(configs)
     old_sensors = simulator["cur_sensors"]
@@ -85,8 +84,10 @@ def start_sensors(simulator, new_sensors, configs):
     for i in range(old_sensors, new_sensors):
         config = configs[i % num_configs]
         task = simulator["loop"].create_task(run_sensor(simulator, i, config))
-        # simulator["tasks"].append(task)
-
+        sensors_tasks.append(task)
+        
+def are_all_sensors_done():
+    return all([task.done() for task in sensors_tasks])
 
 # Stop current sensors
 def stop_sensors(simulator, new_sensors):
